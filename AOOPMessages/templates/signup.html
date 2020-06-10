@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Signup {% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Sign Up</h4>
+        <p class="text-center">Get started with your free account</p>
+        <p>
+            <a href="" style="background-color: #42AEEC;color: #fff;" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+            <a href="" style=" background-color: #405D9D;color: #fff;" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+        </p>
+        <p class="divider-text">
+            <span class="bg-light">OR</span>
+        </p>
+         {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form action="/signup" method="POST" autocomplete="off">
+
+            {{ form.csrf_token }}
+            {% for field, errors in form.errors.items() %}
+                <div class="alert alert-danger">
+                    {{ form[field].label }}: {{ ', '.join(errors) }}
+                </div>
+            {% endfor %}
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+                {{ form.email(class="form-control",placeholder="Email address" ,type="email") }}
+                {#<input name="" class="form-control" placeholder="Email address" type="email">#}
+            </div> <!-- form-group// -->
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                 {{ form.password(class="form-control",placeholder="Create password" ,type="password") }}
+                {#<input class="form-control" placeholder="Create password" type="password">#}
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                {{ form.confirm(class="form-control",placeholder="Repeat password" ,type="password") }}
+                {#<input class="form-control" placeholder="Repeat password" type="password">#}
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Sign Up  </button>
+            </div> <!-- form-group// -->
+            <p class="text-center">Have an account? <a href= {{ url_for("auth.login") }}>Log In</a> </p>
+    </form>
+    </article>
+    </div> <!-- card.// -->
+
+    </div>
+    <!--container end.//-->
+
+{% endblock %}
