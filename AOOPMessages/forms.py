@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import Form,TextField, TextAreaField, validators, StringField, PasswordField
+from wtforms import Form,TextField, TextAreaField, validators, StringField, PasswordField, HiddenField
 
 
 class LoginForm(FlaskForm):
@@ -14,3 +14,9 @@ class SignupForm(FlaskForm):
                            message='Passwords must match')
         ])
     confirm = PasswordField('Repeat Password')
+
+
+class MessageForm(FlaskForm):
+    title = StringField('title', validators=[validators.required()])
+    body = StringField('body', validators=[validators.required()])
+    author_id = HiddenField('author_id')
