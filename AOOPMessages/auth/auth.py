@@ -10,7 +10,7 @@ from flask_login import logout_user
 from AOOPMessages import db
 from AOOPMessages.models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-from AOOPMessages.forms import LoginForm , SignupForm
+from AOOPMessages.forms import LoginForm , SignupForm , MessageForm
 
 
 
@@ -29,6 +29,7 @@ def login():
 def login_post():
 
     form = LoginForm(request.form)
+    messageForm = MessageForm()
 
     if not form.validate_on_submit():
         return render_template('login.html', form=form)
@@ -40,7 +41,7 @@ def login_post():
 
     if user is not None and check_password_hash(user.password, password):
         login_user(user)
-        return render_template('profile.html', user=user)
+        return render_template('profile.html', user=user,formMesaage = messageForm)
     else:
         flash('Please check your login details and try again...')
         return redirect(url_for('auth.login'))

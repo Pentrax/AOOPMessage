@@ -30,3 +30,4 @@ class Message(db.Model):
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    to_id = db.Column(db.Integer, db.ForeignKey('users.id'))

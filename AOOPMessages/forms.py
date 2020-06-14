@@ -20,3 +20,4 @@ class MessageForm(FlaskForm):
     title = StringField('title', validators=[validators.required()])
     body = StringField('body', validators=[validators.required()])
     author_id = HiddenField('author_id')
+    to =  StringField('to_id', validators=[validators.required()])
