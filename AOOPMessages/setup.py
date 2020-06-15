@@ -1,12 +1,13 @@
-from setuptools import setup,find_packages
+from setuptools import setup, find_packages
 
 setup(
-    name="AOOPMessage",
-    version= 0.1,
+    name='AOOPMessages',
+    version='0.1',
     packages=find_packages(),
-    url="http//localhost:PORT",
-    author="Pablo",
-    author_email="emai@email.com.ar",
-    description="Flask Ejemplo",
-    install_requires=[]
+    url='https://localhost:PORT',
+    # license='GPU',
+    author='Pablo Pentreath',
+    author_email='MyEmail@email.com',
+    description='Ejemplo FLASK',
+    install_requires=[i.strip() for i in open("requirements.txt").readlines()]
 )

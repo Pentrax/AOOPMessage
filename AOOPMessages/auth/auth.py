@@ -11,6 +11,7 @@ from AOOPMessages import db
 from AOOPMessages.models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from AOOPMessages.forms import LoginForm , SignupForm , MessageForm
+from AOOPMessages.message import message
 
 
 
@@ -21,7 +22,8 @@ auth = Blueprint('auth', __name__)
 def login():
     form = LoginForm(request.form)
     if current_user.is_authenticated:
-        return render_template('profile.html')
+        msg = message.get_messages_by_user(current_user.id)
+        return render_template('profile.html',user=current_user,msg=msg)
     return render_template('login.html',form=form)
 
 
@@ -41,7 +43,8 @@ def login_post():
 
     if user is not None and check_password_hash(user.password, password):
         login_user(user)
-        return render_template('profile.html', user=user,formMesaage = messageForm)
+        msg = message.get_messages_by_user(user.id)
+        return render_template('profile.html', user=user,formMesaage = messageForm,msg=msg) , 200
     else:
         flash('Please check your login details and try again...')
         return redirect(url_for('auth.login'))
@@ -78,7 +81,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.home')) ,200
 
 
 @auth.route('/logout')

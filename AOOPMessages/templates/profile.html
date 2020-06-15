@@ -12,7 +12,13 @@
 	                <div class="col-md-6 ml-auto mr-auto">
         	           <div class="profile">
 	                        <div class="avatar">
-	                            <img src="https://okdiario.com/img/2019/09/05/mejores-frases-de-homer-simpson-655x368.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% if user.id == 2 %}
+	                                <img src="https://avatarfiles.alphacoders.com/116/thumb-116888.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% elif user.id == 1 %}
+                                    <img src="https://okdiario.com/img/2019/09/05/mejores-frases-de-homer-simpson-655x368.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% else %}
+                                    <img src="https://s.clipartkey.com/mpngs/s/197-1971381_user-svg-clip-arts-avatar-clip-art-small.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% endif %}
 	                        </div>
 	                        <div class="name">
                                 <br>
@@ -28,47 +34,27 @@
                 <div class="description text-center">
                     <p>Homer Jay Simpson is a fictional character and the protagonist of the American animated sitcom The Simpsons</p>
                 </div>
-                <div class="row">
-					<div class="col-md-6 ml-auto mr-auto">
-                       <div class="my-3 p-3 bg-white rounded box-shadow">
-                            <h6 class="border-bottom border-gray pb-2 mb-0">New Message</h6>
 
-                                    <form action="#" method="POST" >
-
-                                        {% for field, errors in formMesaage.errors.items() %}
-                                            <div class="alert alert-danger">
-                                                {{ formMesaage[field].label }}: {{ ', '.join(errors) }}
-                                            </div>
-                                        {% endfor %}
-                                          <div class="form-group">
-                                                {{ formMesaage.title(class="form-control",placeholder="Tittle" ,type="text") }}
-                                          </div>
-                                            <div class="form-group">
-
-                                               {{ formMesaage.to(class="form-control",placeholder="to" ,type="text") }}
-                                          </div>
-                                          <div class="form-group">
-
-                                               {{ formMesaage.body(class="form-control",placeholder="Tittle" ,type="text") }}
-                                          </div>
-                                            <input type="hidden" value=""   name="user_id">
-                                    </form>
-
-                       </div>
-
-    	    	</div>
-            </div>
 				<div class="row">
 					<div class="col-md-6 ml-auto mr-auto">
                        <div class="my-3 p-3 bg-white rounded box-shadow">
                             <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+                           {% if msg %}
+                               {% for mg in msg %}
+
                                 <div class="media text-muted pt-3">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32">
-                                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                            <strong class="d-block text-gray-dark">@username</strong>
-                                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                                              </p>
+
+                                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" style="text-align: left">
+                                            <strong class="d-block text-gray-dark">From: {{ mg.author_name  }}</strong>
+                                            <strong class="d-block text-gray-dark">Title: {{ mg.title  }}</strong>
+                                            <strong class="d-block text-gray-dark">Date: {{ mg.timestamp.strftime('%d-%m-%Y')   }}</strong>
+                                            {{ mg.body }}
+
+                                      </p>
                                 </div>
+                               {% endfor %}
+                           {% endif %}
                        </div>
 
     	    	</div>

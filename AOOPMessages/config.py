@@ -12,7 +12,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URI') or 'postgres://gclvtktm:9L3H48BSQMq_ylo51VZSZzeqMO-EiIqd@isilo.db.elephantsql.com:5432/gclvtktm'
 
 class ProductionConfig(Config):
 

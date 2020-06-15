@@ -30,4 +30,7 @@ def create_app(config_name='development'):
     from AOOPMessages.errors.errors_handler import errors
     app.register_blueprint(errors)
 
+    from AOOPMessages.message.message import message
+    app.register_blueprint(message)
+
     return app
