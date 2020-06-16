@@ -1,4 +1,4 @@
-from test_base import BaseTestClass
+from tests.test_base import BaseTestClass
 import unittest
 
 
