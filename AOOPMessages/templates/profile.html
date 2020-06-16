@@ -40,20 +40,7 @@
                        <div class="my-3 p-3 bg-white rounded box-shadow">
                             <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
                            {% if msg %}
-                               {% for mg in msg %}
-
-                                <div class="media text-muted pt-3">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32">
-
-                                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" style="text-align: left">
-                                            <strong class="d-block text-gray-dark">From: {{ mg.author_name  }}</strong>
-                                            <strong class="d-block text-gray-dark">Title: {{ mg.title  }}</strong>
-                                            <strong class="d-block text-gray-dark">Date: {{ mg.timestamp.strftime('%d-%m-%Y')   }}</strong>
-                                            {{ mg.body }}
-
-                                      </p>
-                                </div>
-                               {% endfor %}
+                                {% include("message_list.html") %}
                            {% endif %}
                        </div>
 

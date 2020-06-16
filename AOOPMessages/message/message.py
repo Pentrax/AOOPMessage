@@ -36,7 +36,7 @@ def send_message():
                             body  = request.form["body"],
                             author_id = request.form["author_id"] ,
                             to_id   =   user_to_id.id,
-                            author_name = user_to_id.email
+                            author_name = user.email
                             )
 
         db.session.add(new_message)
@@ -55,6 +55,6 @@ def message_form():
 
 
 def get_messages_by_user(user_id):
-    messages = Message.query.filter_by(to_id=user_id).all()
+    messages = Message.query.filter_by(to_id=user_id).order_by(Message.timestamp.desc()).all()
 
     return messages
