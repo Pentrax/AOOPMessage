@@ -23,7 +23,7 @@
 	                        <div class="name">
                                 <br>
                                     <h3 class="title">Welcome, {{ user.email }}  </h3>
-								<h6>Designer</h6>
+
 								<a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
@@ -32,7 +32,8 @@
     	            </div>
                 </div>
                 <div class="description text-center">
-                    <p>Homer Jay Simpson is a fictional character and the protagonist of the American animated sitcom The Simpsons</p>
+                    {% include("user_info.html") %}
+
                 </div>
 
 				<div class="row">
