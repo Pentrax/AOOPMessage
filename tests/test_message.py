@@ -6,8 +6,8 @@ import unittest
 class SendMessageTestCase(BaseTestClass):
 
 
-
     def test_send_message_post_user(self):
+
         self.app.config['WTF_CSRF_ENABLED'] = False
         self.app.config['TESTING'] = True
         res = self.client.post('/send',
@@ -22,7 +22,6 @@ class SendMessageTestCase(BaseTestClass):
                                )
         print(f'\n\n RESPONSE {res}')
         self.assertEqual(200, res.status_code)
-
 
 if __name__ == '__main__':
     unittest.main()

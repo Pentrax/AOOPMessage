@@ -19,6 +19,16 @@ class LoginTestCase(BaseTestClass):
                                )
         self.assertEqual(200, res.status_code)
 
+    def test_login_post_user(self):
+        res = self.client.post('/login',
+                               data={
+                                     'email': 'user1@gmail.com',
+                                     'password': 1234
+                                     }
+                               )
+        self.assertEqual(200, res.status_code)
+
+
 
 if __name__ == '__main__':
     unittest.main()

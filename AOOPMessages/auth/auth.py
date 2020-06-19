@@ -81,10 +81,10 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('main.home')) ,200
+    return redirect(url_for('main.home')),200
 
 
 @auth.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.home')),200

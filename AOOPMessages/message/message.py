@@ -58,7 +58,7 @@ def message_form():
 
     if current_user.is_authenticated:
         user = current_user
-        return render_template('message.html', formMesaage=messageForm,user=user,email = email)
+        return render_template('message.html', formMesaage=messageForm,user=user,email = email),200
 
 
 
