@@ -1,4 +1,4 @@
-import unitest
+import unittest
 from AOOPMessages import db, create_app
 
 
@@ -15,3 +15,7 @@ class BaseTestClass(unittest.TestCase):
         with self.app.app_context():
             db.session.remove()
             db.drop_all()
+
+
+if __name__ == '__main__':
+    unittest.main()

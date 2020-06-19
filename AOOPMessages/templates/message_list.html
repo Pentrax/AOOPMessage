@@ -10,5 +10,6 @@
                 {{ mg.body }}
 
           </p>
+        <a class="btn btn-success" href="{{ url_for("message.message_form",current_response = mg.author_id) }}">+</a>
     </div>
 {% endfor %}

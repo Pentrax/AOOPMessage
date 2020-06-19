@@ -20,6 +20,7 @@ def send_message():
 
     to = request.form['to']
 
+
     user_to =User.query.filter_by(email=to).first()
 
     author_id = request.form['author_id']
@@ -41,16 +42,24 @@ def send_message():
 
         db.session.add(new_message)
         db.session.commit()
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('auth.login')),200
 
 
 @message.route("/message",methods=['GET'])
 def message_form():
+
     messageForm = MessageForm(request.form)
+    user_response = request.args.get('current_response')
+    email = False
+
+    if user_response:
+        user_response= User.query.filter_by(id=user_response).first()
+        email = user_response.email
 
     if current_user.is_authenticated:
         user = current_user
-        return render_template('message.html', formMesaage=messageForm,user=user)
+        return render_template('message.html', formMesaage=messageForm,user=user,email = email)
+
 
 
 

@@ -2,13 +2,6 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div>
-            {{ messages[0] }}
-        </div>
-    {% endif %}
-    {% endwith %}
 
 <div class="card bg-light">
     <article class="card-body mx-auto" style="max-width: 400px;">
@@ -23,7 +16,7 @@
         </p>
          {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div>
+                <div class="alert alert-danger" role="alert">
                     {{ messages[0] }}
                 </div>
             {% endif %}
